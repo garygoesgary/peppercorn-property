@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community Support — Peppercorn Property</title>
+  <title>Community Statement of Support — Peppercorn Property</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { width: 100%; }
@@ -18,7 +18,8 @@
       font-family: 'Inter', sans-serif;
       padding: 3rem 1rem;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
     body::before {
       content: "";
@@ -41,31 +42,30 @@
       padding: 2.5rem 2rem;
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.75rem;
-    }
-    .brand img { width: 36px; height: auto; }
-    .brand span {
-      font-family: 'Inria Serif', serif;
-      font-size: 1.3rem;
+    .eyebrow {
+      font-family: 'Arapey', serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.2px;
       color: #2d361a;
+      margin-bottom: 0.75rem;
     }
     h1 {
-      font-family: 'Inria Serif', serif;
+      font-family: 'Arapey', serif;
       font-weight: 400;
-      font-size: 1.9rem;
+      font-size: 2.375rem;
+      letter-spacing: -0.76px;
+      line-height: 1.1;
       color: #2d361a;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
     }
-    .subtext {
+    .letter {
       color: #55604a;
-      font-size: 0.95rem;
+      font-size: 0.875rem;
+      line-height: 1.6;
       margin-bottom: 2rem;
-      line-height: 1.5;
     }
+    .letter p { margin-bottom: 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
     label {
       display: block;
       font-size: 0.85rem;
@@ -74,21 +74,20 @@
       margin-bottom: 0.35rem;
     }
     .field { margin-bottom: 1.2rem; }
-    input, select, textarea {
+    input {
       width: 100%;
       padding: 0.7rem 0.85rem;
       border: 1px solid #cdd0c4;
-      border-radius: 8px;
+      border-radius: 4px;
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       color: #2d361a;
       background: #ffffff;
     }
-    input:focus, select:focus, textarea:focus {
+    input:focus {
       outline: none;
       border-color: #2d361a;
     }
-    textarea { resize: vertical; min-height: 110px; }
     .row-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -130,72 +129,72 @@
       background: #f7e2e2;
       color: #7a2323;
     }
+    .footer-logo {
+      position: relative;
+      z-index: 1;
+      margin-top: 2rem;
+      width: 160px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="brand">
-      <span>Peppercorn Property Solutions</span>
+    <p class="eyebrow">Completion of Micallef St, Riverstone</p>
+    <h1>Community Statement of Support</h1>
+
+    <div class="letter">
+      <p>Dear Blacktown City Council,</p>
+      <p>I/we are residents and/or property owners within the Micallef Street precinct and wish to express our support for the completion of Micallef Street to its full width as originally intended.</p>
+      <p>The current half-width road creates several issues for the surrounding community, including: road safety, vehicle access, traffic flow, amenity of the neighbourhood and access to the adjoining the public park.</p>
+      <p>In my/our opinion, completing Micallef Street would benefit not only the residents who live directly opposite the unfinished section of road, but also the broader community that uses the street on a daily basis.</p>
+      <p>I/we respectfully request that Blacktown City Council allocate funding and prioritise the completion of this section of Micallef Street.</p>
     </div>
 
-    <h1>Community Support Request</h1>
-    <p class="subtext">Let us know how we can help — fill in the details below and our team will get back to you shortly.</p>
-
-    <form id="support-form">
-      <div class="row-2">
-        <div class="field">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
+    <form id="petition-form">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
       </div>
 
       <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <label for="propertyAddress">Property Address</label>
+        <input type="text" id="propertyAddress" name="propertyAddress" required>
       </div>
 
       <div class="row-2">
         <div class="field">
-          <label for="suburb">Suburb</label>
-          <input type="text" id="suburb" name="suburb">
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" name="email">
         </div>
         <div class="field">
-          <label for="enquiryType">Type of Enquiry</label>
-          <select id="enquiryType" name="enquiryType" required>
-            <option value="" disabled selected>Select an option</option>
-            <option value="General Support">General Support</option>
-            <option value="Financial Assistance">Financial Assistance</option>
-            <option value="Maintenance Issue">Maintenance Issue</option>
-            <option value="Tenancy Question">Tenancy Question</option>
-            <option value="Other">Other</option>
-          </select>
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone">
         </div>
       </div>
 
       <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required placeholder="Tell us a bit more about what you need help with..."></textarea>
+        <label for="signature">Signature</label>
+        <input type="text" id="signature" name="signature" placeholder="Type your full name to sign" required>
       </div>
 
-      <button type="submit" id="submit-btn">Send Request</button>
+      <button type="submit" id="submit-btn">Submit</button>
 
       <div class="status" id="status-box"></div>
     </form>
   </div>
 
+  <img class="footer-logo" src="../assets/peppercorn-logo-white.svg" alt="Peppercorn Property Solutions">
+
   <script>
-    const form = document.getElementById('support-form');
+    const form = document.getElementById('petition-form');
     const btn = document.getElementById('submit-btn');
     const statusBox = document.getElementById('status-box');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       btn.disabled = true;
-      btn.textContent = 'Sending...';
+      btn.textContent = 'Submitting...';
       statusBox.className = 'status';
       statusBox.textContent = '';
 
@@ -211,14 +210,14 @@
         if (!res.ok) throw new Error('Request failed');
 
         statusBox.className = 'status success';
-        statusBox.textContent = "Thanks — your request has been sent. We'll be in touch soon.";
+        statusBox.textContent = "Thank you — your statement of support has been recorded.";
         form.reset();
       } catch (err) {
         statusBox.className = 'status error';
-        statusBox.textContent = "Something went wrong sending your request. Please try again, or contact us directly.";
+        statusBox.textContent = "Something went wrong submitting your statement. Please try again, or contact us directly.";
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Send Request';
+        btn.textContent = 'Submit';
       }
     });
   </script>

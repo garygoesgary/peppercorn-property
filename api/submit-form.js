@@ -4,9 +4,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { fullName, email, phone, suburb, enquiryType, message } = req.body || {};
+  const { name, propertyAddress, email, phone, signature } = req.body || {};
 
-  if (!fullName || !email || !phone || !enquiryType || !message) {
+  if (!name || !propertyAddress || !signature) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -20,17 +20,14 @@ export default async function handler(req, res) {
   const emailBody = {
     from: 'Peppercorn Property <onboarding@resend.dev>',
     to: [destinationEmail],
-    reply_to: email,
-    subject: `Community Support Request — ${enquiryType} (${fullName})`,
+    ...(email ? { reply_to: email } : {}),
+    subject: `Micallef St Petition — New Statement of Support (${name})`,
     text: [
-      `Full Name: ${fullName}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Suburb: ${suburb || 'Not provided'}`,
-      `Type of Enquiry: ${enquiryType}`,
-      '',
-      'Message:',
-      message,
+      `Name: ${name}`,
+      `Property Address: ${propertyAddress}`,
+      `Email: ${email || 'Not provided'}`,
+      `Phone: ${phone || 'Not provided'}`,
+      `Signature: ${signature}`,
     ].join('\n'),
   };
 
