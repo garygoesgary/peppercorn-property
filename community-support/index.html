@@ -110,7 +110,7 @@
       cursor: pointer;
       margin-top: 0.5rem;
     }
-    button:hover { background: #3c4826; }
+    button:hover { background: #7bad0c; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
     .status {
       margin-top: 1.25rem;
@@ -133,7 +133,7 @@
       position: relative;
       z-index: 1;
       margin-top: 2rem;
-      width: 160px;
+      width: 208px;
       height: auto;
     }
   </style>
@@ -210,7 +210,7 @@
         if (!res.ok) throw new Error('Request failed');
 
         statusBox.className = 'status success';
-        statusBox.textContent = "Thank you — your statement of support has been recorded.";
+        statusBox.textContent = "Thank you for taking the time to support this community initiative.";
         form.reset();
       } catch (err) {
         statusBox.className = 'status error';
