@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Support — Peppercorn Property</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { width: 100%; }
+    body {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #2d361a;
+      font-family: 'Inter', sans-serif;
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('../assets/leaves-bkg.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 560px;
+      background: #faf8f2;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+    .brand img { width: 36px; height: auto; }
+    .brand span {
+      font-family: 'Inria Serif', serif;
+      font-size: 1.3rem;
+      color: #2d361a;
+    }
+    h1 {
+      font-family: 'Inria Serif', serif;
+      font-weight: 400;
+      font-size: 1.9rem;
+      color: #2d361a;
+      margin-bottom: 0.5rem;
+    }
+    .subtext {
+      color: #55604a;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2d361a;
+      margin-bottom: 0.35rem;
+    }
+    .field { margin-bottom: 1.2rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #cdd0c4;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #2d361a;
+      background: #ffffff;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2d361a;
+    }
+    textarea { resize: vertical; min-height: 110px; }
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .row-2 { grid-template-columns: 1fr; }
+      .card { padding: 2rem 1.25rem; }
+    }
+    button {
+      width: 100%;
+      padding: 0.85rem;
+      background: #2d361a;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button:hover { background: #3c4826; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .status {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .status.success {
+      display: block;
+      background: #e5f0df;
+      color: #2d361a;
+    }
+    .status.error {
+      display: block;
+      background: #f7e2e2;
+      color: #7a2323;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">
+      <span>Peppercorn Property Solutions</span>
+    </div>
+
+    <h1>Community Support Request</h1>
+    <p class="subtext">Let us know how we can help — fill in the details below and our team will get back to you shortly.</p>
+
+    <form id="support-form">
+      <div class="row-2">
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="suburb">Suburb</label>
+          <input type="text" id="suburb" name="suburb">
+        </div>
+        <div class="field">
+          <label for="enquiryType">Type of Enquiry</label>
+          <select id="enquiryType" name="enquiryType" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="General Support">General Support</option>
+            <option value="Financial Assistance">Financial Assistance</option>
+            <option value="Maintenance Issue">Maintenance Issue</option>
+            <option value="Tenancy Question">Tenancy Question</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Tell us a bit more about what you need help with..."></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn">Send Request</button>
+
+      <div class="status" id="status-box"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('support-form');
+    const btn = document.getElementById('submit-btn');
+    const statusBox = document.getElementById('status-box');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+
+        statusBox.className = 'status success';
+        statusBox.textContent = "Thanks — your request has been sent. We'll be in touch soon.";
+        form.reset();
+      } catch (err) {
+        statusBox.className = 'status error';
+        statusBox.textContent = "Something went wrong sending your request. Please try again, or contact us directly.";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Request';
+      }
+    });
+  </script>
+</body>
+</html>
