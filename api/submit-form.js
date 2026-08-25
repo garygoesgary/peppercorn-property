@@ -10,57 +10,23 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const destinationEmail = process.env.DESTINATION_EMAIL;
   const sheetsWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
-  if (!apiKey || !destinationEmail) {
-    return res.status(500).json({ error: 'Server is not configured to send email yet' });
+  if (!sheetsWebhookUrl) {
+    return res.status(500).json({ error: 'Server is not configured to record submissions yet' });
   }
 
-  const emailBody = {
-    from: 'Peppercorn Property <onboarding@resend.dev>',
-    to: [destinationEmail],
-    ...(email ? { reply_to: email } : {}),
-    subject: `Micallef St Petition — New Statement of Support (${name})`,
-    text: [
-      `Name: ${name}`,
-      `Property Address: ${propertyAddress}`,
-      `Email: ${email || 'Not provided'}`,
-      `Phone: ${phone || 'Not provided'}`,
-      `Signature: ${signature}`,
-    ].join('\n'),
-  };
-
-  // Send the email and log to the Google Sheet in parallel. The sheet write
-  // is best-effort — awaited so it actually completes before the function
-  // returns, but its failure doesn't block the email send, which is the
-  // critical path.
-  const sheetsPromise = sheetsWebhookUrl
-    ? fetch(sheetsWebhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, propertyAddress, email, phone, signature }),
-      }).catch((err) => console.error('Sheets webhook error:', err))
-    : Promise.resolve();
-
   try {
-    const [resendRes] = await Promise.all([
-      fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailBody),
-      }),
-      sheetsPromise,
-    ]);
+    const sheetsRes = await fetch(sheetsWebhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, propertyAddress, email, phone, signature }),
+    });
 
-    if (!resendRes.ok) {
-      const errText = await resendRes.text();
-      console.error('Resend error:', errText);
-      return res.status(502).json({ error: 'Failed to send email' });
+    if (!sheetsRes.ok) {
+      const errText = await sheetsRes.text();
+      console.error('Sheets webhook error:', errText);
+      return res.status(502).json({ error: 'Failed to record submission' });
     }
 
     return res.status(200).json({ ok: true });
