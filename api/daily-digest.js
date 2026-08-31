@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   const emailBody = {
     from: 'Peppercorn Property <onboarding@resend.dev>',
     to: [destinationEmail],
-    subject: `Micallef St Petition — ${newRows.length} new statement${newRows.length === 1 ? '' : 's'} of support`,
+    subject: `Micallef Street Petition — ${newRows.length} new statement${newRows.length === 1 ? '' : 's'} of support`,
     text: [
       `${newRows.length} new statement(s) of support in the last 24 hours:`,
       '',
